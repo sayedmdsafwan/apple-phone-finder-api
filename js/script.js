@@ -42,5 +42,34 @@ const loadMobileId = (mobileId) => {
     const url = `https://openapi.programming-hero.com/api/phone/${mobileId}`;
     fetch(url)
         .then((Response) => Response.json())
-        .then((json) => console.log(json.data));
+        .then((json) => displayMobileData(json.data));
+};
+
+const displayMobileData = (mobileData) => {
+    console.log(mobileData);
+    const detailsData = document.getElementById("details");
+    const div = document.createElement("div");
+    div.classList.add("card", "mb-3");
+    div.innerHTML = `
+        <img src="${mobileData.image}" class="card-img-top" alt="..." />
+        <div class="card-body p-4">
+            <h3 class="card-title display-6 my-3">${mobileData.name}</h3>
+            <h4 class= "my-3">Brand: ${mobileData.brand}</h4>
+            <ul style = "margin:0; padding:0" class="mb-3">
+                <li>${mobileData.mainFeatures.storage}</li>
+                <li>${mobileData.mainFeatures.chipSet}</li>
+                <li>${mobileData.mainFeatures.displaySize}</li>
+            </ul>
+            <p class="card-text">
+                <small class="text-muted"
+                    >${
+                        mobileData.releaseDate
+                            ? mobileData.releaseDate
+                            : "No release date"
+                    }</small
+                >
+            </p>
+        </div>
+    `;
+    detailsData.appendChild(div);
 };
