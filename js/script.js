@@ -57,12 +57,6 @@ const displayMobileData = (mobileData) => {
         <img src="${mobileData.image}" class="card-img-top" alt="..." />
         <div class="card-body p-4">
             <h3 class="card-title display-6 my-3">${mobileData.name}</h3>
-            <h4 class= "my-3">Brand: ${mobileData.brand}</h4>
-            <ul style = "margin:0; padding:0" class="mb-3">
-                <li>${mobileData.mainFeatures.storage}</li>
-                <li>${mobileData.mainFeatures.chipSet}</li>
-                <li>${mobileData.mainFeatures.displaySize}</li>
-            </ul>
             <p class="card-text">
                 <small class="text-muted"
                     >${
@@ -72,6 +66,13 @@ const displayMobileData = (mobileData) => {
                     }</small
                 >
             </p>
+            <h4 class= "my-3">Brand: ${mobileData.brand}</h4>
+            <ul style = "margin:0; padding:0" class="mb-3">
+                <li>${mobileData.mainFeatures.storage}</li>
+                <li>${mobileData.mainFeatures.chipSet}</li>
+                <li>${mobileData.mainFeatures.displaySize}</li>
+            </ul>
+            <p class="lead"><b>Sensors:</b> ${mobileData.mainFeatures.sensors.join(', ')}</p>
         </div>
     `;
     detailsData.appendChild(div);
