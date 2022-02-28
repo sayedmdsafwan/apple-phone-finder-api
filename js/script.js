@@ -1,14 +1,17 @@
 const loadMobileName = () => {
-    const searchText = document.getElementById("search-field").value;
+    const searchContent = document.getElementById("search-field");
+    const searchText = searchContent.value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
         .then((Response) => Response.json())
         .then((json) => displayMobileName(json.data));
+    searchContent.value = "";
 };
 
 const displayMobileName = (mobiles) => {
     // console.log(mobiles);
     const displayMobiles = document.getElementById("display-search");
+    displayMobiles.textContent = "";
     mobiles.forEach((mobile) => {
         console.log(mobile);
         const div = document.createElement("div");
@@ -28,7 +31,7 @@ const displayMobileName = (mobiles) => {
                             <p class="card-text">
                                 Brand: ${mobile.brand}
                             </p>
-                            <button onclick="loadMobileId('${mobile.slug}')">Details</button>
+                            <button class="btn btn-outline-primary" onclick="loadMobileId('${mobile.slug}')">Details</button>
                         </div>
                     </div>
                 </div>
